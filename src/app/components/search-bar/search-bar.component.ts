@@ -14,13 +14,13 @@ export interface City {
 })
 export class SearchBarComponent implements OnInit {
   citis: City[] = [
-    {value: 'BANGLORE', viewValue: 'Banglore'},
+    {value: 'PUNE', viewValue: 'Pune'},
     {value: 'DELHI', viewValue: 'Delhi'},
     {value: 'MUMBAI', viewValue: 'Mumbai'},
     {value: 'HYDERABAD', viewValue: 'Hyderabad'},
     {value: 'NOIDA', viewValue: 'Noida'}
   ];
-  selected = 'BANGLORE';
+  selected = 'PUNE';
   @Output() searchClicked  = new EventEmitter<any>()
   searchInput:any;
   constructor(private dataService:DataService,private bankService:BankService) { 
