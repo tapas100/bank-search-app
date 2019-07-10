@@ -1,0 +1,16 @@
+.list-item-container{
+    display:flex;
+    justify-content: space-between;
+}
+.profile-img{
+    height: 50px;
+    width: 50px;
+    .image-wrapper{
+        background-image: url(/assets/img/user.png);
+        height: inherit;
+        width: inherit;
+        background-size: cover;
+        border: 1px solid #f1f0f0;
+        border-radius: 50px;
+    }
+}

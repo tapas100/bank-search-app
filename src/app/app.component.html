@@ -1,0 +1,14 @@
+<div class="header-section ">
+  <div class="text-center">
+    <h2 class="font-weight-normal"><img src="./../assets/cct.jpg">BANK SEARCH APP</h2>
+  </div>
+</div>
+<div *ngIf="loadComplete" class="container-fluid">
+  <app-home></app-home>
+</div>
+<app-loader *ngIf="!loadComplete"></app-loader>
+<div class="footer-section" [ngClass]="{'position-bottom':'!loadComplete'}">
+  <div class="text-center">
+    <span>&copy;Developed by Tapas Mahanta</span>
+  </div>
+</div>

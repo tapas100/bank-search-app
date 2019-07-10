@@ -1,0 +1,14 @@
+<div class="d-flex">
+    <mat-form-field appearance="outline">
+        <mat-label>Select City</mat-label>
+        <mat-select [(value)]="selected" (selectionChange)="changeCity()">
+            <mat-option *ngFor="let city of citis"  [value]="city.value">
+                {{city.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <form>
+        <input type="text" class="textbox" (input)="searchEvent()" placeholder="Search" [(ngModel)]="searchInput"
+            [ngModelOptions]="{standalone: true}" />
+    </form>
+</div>
