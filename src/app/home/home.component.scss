@@ -58,6 +58,13 @@ tr.example-element-row:not(.example-expanded-row):active {
   overflow-y: auto;
   overflow-x: hidden;
 }
+@media only screen and (max-width: 600px) {
+  .table-container{
+    height: 75vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  } 
+} 
 .mat-paginator-sticky {
   bottom: 0px;
   position: sticky;
