@@ -64,7 +64,7 @@ export class HomeComponent implements OnInit {
   getBankList() {
     this.dataService.bankList$.subscribe(
       response => {
-        console.log('response', response)
+        // console.log('response', response)
         this.bankList = response;
         this.dataSource = new MatTableDataSource<any>(response);
         this.dataSource.paginator = this.paginator;
@@ -80,7 +80,7 @@ export class HomeComponent implements OnInit {
     }
   }
   addToFavorites(event,element){
-    console.log(event,element);
+    // console.log(event,element);
     this.favoriteBanks.push(element.ifsc);
     this.favoriteBanks = this.favoriteBanks.filter(function(item, pos, self) {
       return self.indexOf(item) == pos;
@@ -89,7 +89,7 @@ export class HomeComponent implements OnInit {
   }
 
   isfav(element){
-    console.log(this.favoriteBanks,element);
+    // console.log(this.favoriteBanks,element);
     return this.favoriteBanks.find(ele => ele == element.ifsc);
   }
 }

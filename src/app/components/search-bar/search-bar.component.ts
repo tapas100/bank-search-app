@@ -17,8 +17,8 @@ export class SearchBarComponent implements OnInit {
     {value: 'BANGLORE', viewValue: 'Banglore'},
     {value: 'DELHI', viewValue: 'Delhi'},
     {value: 'MUMBAI', viewValue: 'Mumbai'},
-    {value: 'HYDERABAD', viewValue: 'Hyderabad'}
-
+    {value: 'HYDERABAD', viewValue: 'Hyderabad'},
+    {value: 'NOIDA', viewValue: 'Noida'}
   ];
   selected = 'BANGLORE';
   @Output() searchClicked  = new EventEmitter<any>()
@@ -32,7 +32,7 @@ export class SearchBarComponent implements OnInit {
   }
 
   searchEvent(){
-    console.log(this.searchInput)
+    // console.log(this.searchInput)
      this.searchClicked.emit(this.searchInput)
   }
 
