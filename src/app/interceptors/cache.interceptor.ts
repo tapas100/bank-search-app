@@ -8,8 +8,6 @@ import { HttpcacheService } from '../services/httpcache.service';
 })
 export class CacheInterceptor implements HttpInterceptor {
   cache: any;
-
-
   constructor(private cahceService: HttpcacheService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<any> {

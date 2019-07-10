@@ -12,4 +12,8 @@ export class LoaderComponent implements OnInit {
   ngOnInit() {
   }
 
+  getArray(n){
+    return new Array(n)
+  }
+
 }

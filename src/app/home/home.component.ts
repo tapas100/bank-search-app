@@ -3,17 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { DataService } from '../services/data.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { trigger, state, transition, style, animate } from '@angular/animations';
-
-export interface BankData {
-  address: String,
-  bank_id: Number,
-  bank_name: String,
-  branch: String,
-  city: String,
-  district: String
-  ifsc: String
-  state: String
-}
+import { BankData } from '../models/bankData';
 
 @Component({
   selector: 'app-home',
@@ -31,41 +21,26 @@ export interface BankData {
 export class HomeComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   expandedElement: BankData | null;
-  bankList = []
-  pageLength: number = 0;
-  pageSize: number = 5;
-  bankViewList = [];
+  pageSize: number = 20;
   columnKeys = [];
-  favoriteBanks:any[] = [];
-  constructor(private dataService: DataService) {
-    // const users = Array.from({length: 100}, (_, k) => this.createNewUser(k + 1));
-
-    // // Assign the data to the data source for the table to render
-    // this.dataSource = new MatTableDataSource(users);
-    this.columnKeys = [...this.displayedColumns];    
-    this.columnKeys.pop();
-    console.log(this.columnKeys,this.displayedColumns)
-  }
+  favoriteBanks: any[] = [];
+  dataSource: MatTableDataSource<any>;
   displayedColumns: any[] = [
     'bank_name',
-     'branch' ,
-     'ifsc',
-    //  'city',
-     'favorite'
-  ];
-  dataSource: MatTableDataSource<any>;
+    'ifsc',
+    'favorite'
 
+  ];
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.favoriteBanks = JSON.parse(localStorage.getItem('favBanks')) != null ? JSON.parse(localStorage.getItem('favBanks')): [];
+    this.favoriteBanks = JSON.parse(localStorage.getItem('favBanks')) != null ? JSON.parse(localStorage.getItem('favBanks')) : [];
     this.getBankList();
   }
 
   getBankList() {
     this.dataService.bankList$.subscribe(
       response => {
-        // console.log('response', response)
-        this.bankList = response;
         this.dataSource = new MatTableDataSource<any>(response);
         this.dataSource.paginator = this.paginator;
       }
@@ -79,17 +54,20 @@ export class HomeComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-  addToFavorites(event,element){
-    // console.log(event,element);
-    this.favoriteBanks.push(element.ifsc);
-    this.favoriteBanks = this.favoriteBanks.filter(function(item, pos, self) {
-      return self.indexOf(item) == pos;
-  })
-    localStorage.setItem('favBanks',JSON.stringify(this.favoriteBanks));
+  addToFavorites(event, element) {
+    if (event.checked == true) {
+      this.favoriteBanks.push(element.ifsc);
+      this.favoriteBanks = this.favoriteBanks.filter(function (item, pos, self) {
+        return self.indexOf(item) == pos;
+      })
+    }
+    if (event.checked == false) {
+      this.favoriteBanks = this.favoriteBanks.filter(function(e) { return e !== element.ifsc })
+    }
+    localStorage.setItem('favBanks', JSON.stringify(this.favoriteBanks));
   }
 
-  isfav(element){
-    // console.log(this.favoriteBanks,element);
+  isfav(element) {
     return this.favoriteBanks.find(ele => ele == element.ifsc);
   }
 }

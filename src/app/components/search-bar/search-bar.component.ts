@@ -32,7 +32,6 @@ export class SearchBarComponent implements OnInit {
   }
 
   searchEvent(){
-    // console.log(this.searchInput)
      this.searchClicked.emit(this.searchInput)
   }
 
